@@ -1243,53 +1243,53 @@ DT1)5Y2
 all_nodes = {}
 
 class Node:
-	children = []
-	parent = None
+    children = []
+    parent = None
 
-	def __init__(self, name):
-		self.name = name
+    def __init__(self, name):
+        self.name = name
 
-	def add_child(self, node):
-		self.children.append(node)
+    def add_child(self, node):
+        self.children.append(node)
 
 
 while True:
-	try:
-		a,b = input().split(')')
-		if a in all_nodes:
-			node_a = all_nodes[a]
-		else:
-			node_a = Node(a)
+    try:
+        a,b = input().split(')')
+        if a in all_nodes:
+            node_a = all_nodes[a]
+        else:
+            node_a = Node(a)
 
-		if b in all_nodes:
-			node_b = all_nodes[b]
-		else:
-			node_b = Node(b)
+        if b in all_nodes:
+            node_b = all_nodes[b]
+        else:
+            node_b = Node(b)
 
-		all_nodes[a] = node_a
-		all_nodes[b] = node_b
-		node_a.add_child(node_b)
-		node_b.parent = node_a
-	except:
-		break
+        all_nodes[a] = node_a
+        all_nodes[b] = node_b
+        node_a.add_child(node_b)
+        node_b.parent = node_a
+    except:
+        break
 
 
 direct = 0
 indirect = 0
 for name, node in all_nodes.items():
-	parent_node = node.parent
-	if parent_node != None:
-		direct += 1
+    parent_node = node.parent
+    if parent_node != None:
+        direct += 1
 
-	while parent_node != None:
-		parent_node = parent_node.parent
-		if parent_node != None:
-			indirect += 1
+    while parent_node != None:
+        parent_node = parent_node.parent
+        if parent_node != None:
+            indirect += 1
 
 
 print(direct + indirect)
 
 max_children = 0
 for name, node in all_nodes.items():
-	max_children = max(len(node.children), max_children)
+    max_children = max(len(node.children), max_children)
 print(max_children)

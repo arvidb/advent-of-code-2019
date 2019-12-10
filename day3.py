@@ -9,34 +9,34 @@ w1 = input().split(',')
 w2 = input().split(',')
 
 dirs = {
-	'R': (1, 0),
-	'L': (-1, 0),
-	'U': (0, 1),
-	'D': (0, -1),
+    'R': (1, 0),
+    'L': (-1, 0),
+    'U': (0, 1),
+    'D': (0, -1),
 }
 
 coords = set()
 orig = (0,0)
 for path in w1:
-	dir = path[0]
-	dist = path[1:]
+    dir = path[0]
+    dist = path[1:]
 
-	for _ in range(int(dist)):
-		orig = tuple(map(operator.add, orig, dirs[dir]))
-		coords.add(orig)
+    for _ in range(int(dist)):
+        orig = tuple(map(operator.add, orig, dirs[dir]))
+        coords.add(orig)
 
 orig = (0,0)
 best = sys.maxsize
 for path in w2:
-	dir = path[0]
-	dist = path[1:]
+    dir = path[0]
+    dist = path[1:]
 
-	for _ in range(int(dist)):
-		orig = tuple(map(operator.add, orig, dirs[dir]))
-		if orig in coords:
-			print('intersect at', orig)
-			dist = abs(orig[0]) + abs(orig[1])
-			best = min(dist, best)
+    for _ in range(int(dist)):
+        orig = tuple(map(operator.add, orig, dirs[dir]))
+        if orig in coords:
+            print('intersect at', orig)
+            dist = abs(orig[0]) + abs(orig[1])
+            best = min(dist, best)
 
 print(best)
 

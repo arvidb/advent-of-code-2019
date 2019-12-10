@@ -6,79 +6,79 @@ program = input().split(',')
 ip = 0
 
 def next():
-	global ip
-	ip = ip+1
-	return ip
+    global ip
+    ip = ip+1
+    return ip
 
 while ip < len(program):
-	op = program[ip]
+    op = program[ip]
 
-	tmp = list("{:05d}".format(int(op)))
-	A,B,C,D,E = tmp
-	op = D+E
+    tmp = list("{:05d}".format(int(op)))
+    A,B,C,D,E = tmp
+    op = D+E
 
-	if op == '01':
-		op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
-		op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
-		out = int(program[next()])
-		if A == '0':
-			program[int(out)] = str(op1 + op2)
-		else:
-			program[ip] = str(op1 + op2)
-	elif op == '02':
-		op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
-		op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
-		out = int(program[next()])
-		if A == '0':
-			program[int(out)] = str(op1 * op2)
-		else:
-			program[ip] = str(op1 * op2)
-	elif op == '03':
-		out = int(program[next()])
-		if C == '0':
-			program[int(out)] = input_value
-		else:
-			program[ip] = in_val
-	elif op == '04':
-		op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
-		print('output:',op1)
-	elif op == '05':
-		op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
-		op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
-		if op1 != 0:
-			ip = op2
-			print('set ip to', ip)
-	elif op == '06':
-		op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
-		op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
-		if op1 == 0:
-			ip = op2
-			print('set ip to', ip)
-	elif op == '07':
-		op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
-		op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
-		out = int(program[next()])
-		is_true = op1 < op2
-		if A == '0':
-			program[int(out)] = '1' if is_true else '0'
-		else:
-			program[ip] = '1' if is_true else '0'
-	elif op == '08':
-		op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
-		op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
-		out = int(program[next()])
-		is_true = op1 == op2
-		if A == '0':
-			program[int(out)] = '1' if is_true else '0'
-		else:
-			program[ip] = '1' if is_true else '0'
-	elif op == '99':
-		print('halt')
-		break
+    if op == '01':
+        op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
+        op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
+        out = int(program[next()])
+        if A == '0':
+            program[int(out)] = str(op1 + op2)
+        else:
+            program[ip] = str(op1 + op2)
+    elif op == '02':
+        op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
+        op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
+        out = int(program[next()])
+        if A == '0':
+            program[int(out)] = str(op1 * op2)
+        else:
+            program[ip] = str(op1 * op2)
+    elif op == '03':
+        out = int(program[next()])
+        if C == '0':
+            program[int(out)] = input_value
+        else:
+            program[ip] = in_val
+    elif op == '04':
+        op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
+        print('output:',op1)
+    elif op == '05':
+        op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
+        op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
+        if op1 != 0:
+            ip = op2
+            print('set ip to', ip)
+    elif op == '06':
+        op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
+        op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
+        if op1 == 0:
+            ip = op2
+            print('set ip to', ip)
+    elif op == '07':
+        op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
+        op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
+        out = int(program[next()])
+        is_true = op1 < op2
+        if A == '0':
+            program[int(out)] = '1' if is_true else '0'
+        else:
+            program[ip] = '1' if is_true else '0'
+    elif op == '08':
+        op1 = int(program[int(program[next()])]) if C == '0' else int(program[next()])
+        op2 = int(program[int(program[next()])]) if B == '0' else int(program[next()])
+        out = int(program[next()])
+        is_true = op1 == op2
+        if A == '0':
+            program[int(out)] = '1' if is_true else '0'
+        else:
+            program[ip] = '1' if is_true else '0'
+    elif op == '99':
+        print('halt')
+        break
 
-	if op != '05' and op != '06':
-		next()
-	else:
-		print('ip not changes')
+    if op != '05' and op != '06':
+        next()
+    else:
+        print('ip not changes')
 
 #print(program)
