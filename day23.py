@@ -145,37 +145,35 @@ for i in range(50):
     computers[-1].add_input(i)
 
 gens = [g.run_program() for g in computers]
-cmd_put = [deque() for _ in range(len(gens))]
-nat = []
+nat = None
 last_y = -1
 idle = 0
 while True:
     for idx, computer in enumerate(gens):
         output = next(computer)
         if output == WAIT_FOR_INPUT:
-            if len(cmd_put[idx]) > 0:
-                computers[idx].add_input(cmd_put[idx].popleft())
-                computers[idx].add_input(cmd_put[idx].popleft())
-            else:
-                computers[idx].add_input(-1)
+            computers[idx].add_input(-1)
         else:
             target = int(output)
             x = int(next(computer))
             y = int(next(computer))
             if target == 255:
-                nat = [x, y]
+                if not nat:
+                    print('Part 1', y)
+                nat = x, y
             else:
-                cmd_put[target].append(x)
-                cmd_put[target].append(y)
+                computers[target].add_input(x)
+                computers[target].add_input(y)
 
-    if len(nat) and all([len(x) == 0 for x in cmd_put]):
+    if nat and all([len(c.inputs) == 0 or c.inputs[0] == str(-1) for c in computers]):
         if idle == 10:
             idle = 0
-            cmd_put[0].append(nat[0])
-            cmd_put[0].append(nat[1])
-            if last_y == nat[1]:
-                print('Part 2', nat[1])
+            x, y = nat
+            computers[0].add_input(x)
+            computers[0].add_input(y)
+            if last_y == y:
+                print('Part 2', y)
                 break
-            last_y = nat[1]
+            last_y = y
         else:
             idle += 1
